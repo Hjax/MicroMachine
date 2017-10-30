@@ -60,18 +60,28 @@ void RangedManager::assignTargets(const std::vector<const sc2::Unit *> & targets
             // if there are no targets
             else
             {
+                // gotta collect-em all
+                sc2::Point2D closestShard = sc2::Point2D(m_bot.Map().width(), m_bot.Map().height());
+                auto potentialMinerals = m_bot.Observation()->GetUnits(sc2::Unit::Alliance::Neutral);
+                bool found(false);
+                for (auto mineral : potentialMinerals) 
+                {
+                    // mineral shard
+                    if (mineral->unit_type == 1680 && Util::Dist(mineral->pos, rangedUnit->pos) < Util::Dist(closestShard, rangedUnit->pos)) {
+                        found = true;
+                        closestShard = mineral->pos;
+                    }
+                }
+                // if we found a mineral shard
+                if (found)
+                    Micro::SmartMove(rangedUnit, closestShard, m_bot);
                 // if we're not near the order position
-                if (Util::Dist(rangedUnit->pos, order.getPosition()) > 4)
+                else if (Util::Dist(rangedUnit->pos, order.getPosition()) > 4)
                 {
                     // move to it
                     Micro::SmartMove(rangedUnit, order.getPosition(), m_bot);
                 }
             }
-        }
-
-        if (m_bot.Config().DrawUnitTargetInfo)
-        {
-            // TODO: draw the line to the unit's target
         }
     }
 }

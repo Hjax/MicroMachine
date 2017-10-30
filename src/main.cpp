@@ -61,19 +61,26 @@ int main(int argc, char* argv[])
     }
 
     // Add the custom bot, it will control the players.
-    CCBot bot;
-
+    CCBot bot1;
+    CCBot bot2;
     
     // WARNING: Bot logic has not been thorougly tested on step sizes > 1
     //          Setting this = N means the bot's onFrame gets called once every N frames
     //          The bot may crash or do unexpected things if its logic is not called every frame
     coordinator.SetStepSize(stepSize);
     coordinator.SetRealtime(false);
-
+    
     coordinator.SetParticipants({
-        CreateParticipant(Util::GetRaceFromString(botRaceString), &bot),
+        CreateParticipant(Util::GetRaceFromString(botRaceString), &bot1),
         CreateComputer(Util::GetRaceFromString(enemyRaceString), enemyDifficulty)
     });
+    
+   /*
+    coordinator.SetParticipants({
+        CreateParticipant(Util::GetRaceFromString(botRaceString), &bot1),
+        CreateParticipant(Util::GetRaceFromString(enemyRaceString), &bot2),
+    });
+    */    
 
     // Start the game.
     coordinator.LaunchStarcraft();

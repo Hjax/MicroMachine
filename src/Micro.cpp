@@ -2,8 +2,6 @@
 #include "Util.h"
 #include "CCBot.h"
 
-const float dotRadius = 0.1f;
-
 void Micro::SmartStop(const sc2::Unit * attacker, CCBot & bot)
 {
     BOT_ASSERT(attacker != nullptr, "Attacker is null");
