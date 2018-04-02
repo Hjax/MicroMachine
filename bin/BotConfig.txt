@@ -1,7 +1,7 @@
 {
     "Bot Info" :
     {
-        "BotName"                   : "CommandCenter",
+        "BotName"                   : "MicroMachine",
         "Authors"                   : "David Churchill",
         "PrintInfoOnStart"          : false
     },
@@ -19,7 +19,7 @@
         "BotRace"                   : "Terran",
         "EnemyDifficulty"           : 10,
         "EnemyRace"                 : "Random",
-        "MapFile"                   : "mini_games//DefeatZerglingsAndBanelings.SC2Map",
+        "MapFile"                   : "FrostLE.SC2Map",
         "StepSize"                  : 1
     },
         
@@ -32,11 +32,11 @@
         "WeakestEnemy"              : false,
         "HighestPriority"           : true,
         "KiteWithRangedUnits"       : true,
-        "ScoutHarassEnemy"          : true
+        "ScoutHarassEnemy"          : false
     },
     "UCTConsideringDurations" :
     {
-        "UCTCD"                     : true,
+        "UCTCD"                     : false,
         "UCTCDMaxMilli"             : 50,
         "UCTCDK"                    : 1.5,
         "UCTCDMaxTraversals"        : 1000,
