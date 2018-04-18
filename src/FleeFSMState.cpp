@@ -7,6 +7,7 @@ FleeFSMState::FleeFSMState(const sc2::Unit * unit, const sc2::Unit * target)
 {
     m_unit = unit;
     m_target = target;
+    actionSent = false;
 }
 
 void FleeFSMState::onEnter()
@@ -15,13 +16,20 @@ void FleeFSMState::onEnter()
     KitingFSMTransition* shouldAttack = new ShouldAttackTransition(m_unit, m_target, attack);
     transitions = { shouldAttack };
 }
-void FleeFSMState::onExit() {}
+void FleeFSMState::onExit()
+{
+    actionSent = false;
+}
 std::vector<KitingFSMTransition*> FleeFSMState::getTransitions()
 {
     return transitions;
 }
 void FleeFSMState::onUpdate(const sc2::Unit * target, CCBot* bot)
 {
-    sc2::Point2D fleePosition(m_unit->pos - target->pos + m_unit->pos);
-    bot->Actions()->UnitCommand(m_unit, sc2::ABILITY_ID::MOVE, fleePosition);
+    if (!actionSent)
+    {
+        sc2::Point2D fleePosition(m_unit->pos - target->pos + m_unit->pos);
+        bot->Actions()->UnitCommand(m_unit, sc2::ABILITY_ID::MOVE, fleePosition);
+        actionSent = true;
+    }
 }

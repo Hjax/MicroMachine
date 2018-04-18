@@ -21,7 +21,7 @@
         "PlayVsItSelf"              : false,
         "EnemyDifficulty"           : 7,
         "EnemyRace"                 : "Random",
-        "MapFile"                   : "InterloperLE.SC2Map",
+        "MapFile"                   : "DefeatBanelings.SC2Map",
         "StepSize"                  : 1
     },
         
